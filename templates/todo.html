@@ -1,0 +1,57 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Log In
+{% endblock %}
+
+{% block main %}
+
+<style>
+    table, th, td {
+      border:1px solid black;
+      width:70%;
+      margin: auto;
+    }
+</style>
+
+<form action="/todo" method="post">
+    <div class="mb-3">
+        <label for="birthday">Date:</label>
+        <input class="form-control mx-auto w-auto" name="date" type="date">
+    </div>
+    <div class="mb-3">
+        <textarea id="textboxid" class="form-control mx-auto w-auto" rows="10" name="todo" placeholder="LIST OF THINGS TO DO" type="text"></textarea>
+    </div>
+    <button class="btn btn-primary" type="submit">SUBMIT</button>
+</form>
+
+<h1>TO DO LIST</h1>
+    <div style="background-color:aqua; overflow:auto; padding:10px">
+        <div style="text-align:left; overflow:auto">
+            Username: {{ user[0][1] }}
+        <div style="float:right">today's date</div>
+        </div>
+    </div>
+    <div style="background-color:lavenderblush; overflow:auto; padding:20px">
+        <h2>TO DO LISTS</h2>
+        <table>
+            <form action="/delete_todo" method="POST">
+            <tr>
+                <th>DATE</th>
+                <th>TO DO LIST</th>
+                <th></th>
+            </tr>
+            {% for row in rows %}
+            <tr>
+                <input value="{{ row[2] }}" name="delete_row" hidden>
+                <td >{{  row[2]  }}</td>
+                <td >{{  row[1]  }}</td>
+                <td><button class="btn btn-primary" type="submit">DONE</button></td>
+            </tr>
+            {% endfor %}
+            </form>
+        </table>
+
+
+
+{% endblock %}

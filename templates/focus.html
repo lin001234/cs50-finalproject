@@ -1,0 +1,91 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Log In
+{% endblock %}
+
+{% block main %}
+<div class="image-container">
+    <img alt="{{ top }}" class="border img-fluid" style="width:100%; height:auto"src="https://media.istockphoto.com/id/1213152081/vector/vegetable-seedlings-growth-in-fertile-ground-on-blue-sky-background-one-sprout-with-root.jpg?s=612x612&w=0&k=20&c=rpHpmH-oU9R-ejs9YTwpWr_ZnbMiAEvHL9_6XlaKwbk=" alt="Cartoon Ground Images"  aria-hidden=false title="top">
+    <div class="overlay-text">
+        <h1 style="text-align: center;">Timer App</h1>
+
+        <p id="timer"> <span id="remaining_time"></span></p>
+        <p hidden id="total_seconds"> </p>
+        <progress max="{{ total_seconds }}" class="progress progress--set" id="progressBar"></progress>
+        <form action="/reset" method="POST">
+            <input type="submit" value="Reset Timer">
+        </form>
+
+
+        <div id='popup'>
+        <span id='popupMessage'>Are you sure you want to stop focusing?</span><br/>
+        <form action="/stop" method="POST">
+            <input type="hidden" name="timer_id" id="timer_id" value="{{ timer_id }}">
+            <button id='confirm' type="submit">Confirm</button>
+        </form>
+        <button id='cancel' onclick='hide()'>Cancel</button>
+        </div>
+
+        <button style="text-align:center" id='stopBtn' onclick='show()'>STOP</button>
+ 
+
+        
+    </div>
+</div>
+        <script>
+        const timer = setInterval(updateRemainingTime, 500);
+
+        function updateRemainingTime() {
+            fetch('/remaining_time')
+            .then(response => response.json())
+            .then(data => {
+                let hours = Math.floor(data.remaining_time_in_seconds / 60 / 60)
+                let minutes = Math.floor((data.remaining_time_in_seconds / 60) % 60);
+                let seconds = Math.floor(data.remaining_time_in_seconds % 60);
+                let remaining_time1= data.remaining_time_in_seconds
+                if (seconds < 10 && seconds >= 0) {
+                    seconds = "0" + seconds;
+                }
+                if (minutes < 10 && minutes >= 0) {
+                    minutes = "0" + minutes;
+                }
+                if (seconds == 0 && minutes == 0 && hours ==0) {
+                window.location.href = "{{ url_for('timer') }}";
+                clearInterval(timer);
+                }
+                
+                let remainingTimeElement = document.getElementById("remaining_time");
+                remainingTimeElement.innerText = `${hours}:${minutes}:${seconds}`;
+                document.getElementById("remaining_time").innerText = hours+ ":" + minutes + ":" + seconds;
+                
+                const progressBAR = document.getElementById("progressBar")
+                var total_seconds =  ["{{  total_seconds  }}"]
+                var total_seconds = progressBAR.max;
+                document.getElementById("total_seconds").innerText = total_seconds
+                progressBAR.value = remaining_time1
+                document.getElementById("remaining_time1").innerText= remaining_time1
+            })
+        }
+
+        popup = document.getElementById('popup'); // gets the popup element from the document
+        deleteBtn = document.getElementById('stopBtn');
+
+        function show(){
+        popup.style.display = 'Block';
+        deleteBtn.style.display = 'None';
+        }
+
+        function hide(){
+        popup.style.display = 'None';
+        deleteBtn.style.display = 'Block';
+        }
+
+        function stop_timer() {
+                clearInterval(timer);
+                clearInterval(bar);
+            }
+        </script>
+
+
+    {% endblock %}

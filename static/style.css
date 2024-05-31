@@ -1,0 +1,104 @@
+*,
+*::after,
+*::before {
+    box-sizing: inherit;
+}
+
+.header{
+    background-color:rgb(12, 58, 12);
+    color:white;
+    padding: 1.5rem 1rem;
+    text-align:center;
+}
+.miniheader{
+    background-color:darkblue;
+    color:white;
+    padding: 1.5rem 1rem;
+    text-align:center;
+}
+body{
+    padding: 1.5rem 1.5rem;
+}
+
+button{
+  justify-self: center;
+}
+.image-container{
+    position: relative;
+    display: inline-block;
+    width:80%
+}
+
+.overlay-text{
+    position: absolute;
+    top: 10%; 
+    left: 50%; 
+    transform: translate(-50%, -50%); 
+    background-color: #000000; 
+    color: #fff; 
+    padding: 10px 20px; 
+    font-size: 10px; 
+    text-align: center;
+}
+#textboxid{
+    height:200px;
+    font-size:20pt;
+    width:100%;
+}
+
+#popup{
+    display: None;
+    margin: 15px;
+    padding: 10px;
+    border: 2px Solid Red;
+    text-align: center;
+  }
+  
+  #popupMessage{
+    color: Red;
+    font-family: monospace;
+  }
+  
+  #stopBtn{
+    padding:5px;
+    background-color: rgba(200,23,23,0.5); 
+    color: rgba(255,255,255,0.7);
+  }
+  
+  #confirm{
+    padding:5px;
+    background-color: rgba(200,23,23,0.5); 
+    margin: 5px;
+    padding: 5px;
+  }
+  
+  #cancel{
+    color: rgba(255,25,255,1);
+    padding:5px;
+    background-color: rgba(20,255,23,0.5);  
+    margin: 5px;
+    padding: 5px;
+  }
+  .progress {
+    display: block;
+    width: 80%;
+    margin: 0 auto;
+    border: 1px solid #cdc7c2;
+    background-image: none;
+    text-align: center;
+    -webkit-appearance: none;
+}
+
+.progress::-webkit-progress-bar {
+  background-color: #fff;
+}
+
+.progress--set::-webkit-progress-value {
+  background-color: #F56565;
+}
+
+.progress--set::-moz-progress-bar {
+  background-color: #25ab0a;
+}
+
+  

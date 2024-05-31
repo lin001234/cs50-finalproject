@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Log In
+{% endblock %}
+
+{% block main %}
+
+    <div class="miniheader">
+        FOCUS TIMER
+    </div>
+    <form action="/timer" method="post">
+    <div class="mb-3">
+        <label for="hours">Hours:</label>
+        <input class="form-control mx-auto w-auto" type="number" id="hours" name="hours" value="0"><br>
+    </div>
+    <div class="mb-3">
+        <label for="minutes">Minutes:</label>
+        <input class="form-control mx-auto w-auto" type="number" id="minutes" name="minutes" value="0"><br>
+    </div>
+    <!-- Button to start the countdown -->
+    <button class="btn btn-primary" type="submit">Start Countdown</button>
+    </form>
+
+
+{% endblock %}

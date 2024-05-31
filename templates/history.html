@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Log In
+{% endblock %}
+
+{% block main %}
+<style>
+    table, th, td {
+      border:1px solid black;
+      width:70%;
+      margin: auto;
+    }
+</style>
+
+<div style="background-color:lavenderblush; overflow:auto; padding:20px">
+    <table>
+    <tr>
+        <th>DATE</th>
+        <th>TOTAL TIME FOCUSED</th>
+        
+    </tr>
+    {% for row in rows %}
+    <tr>
+
+        <td >{{  row[4]  }}</td>
+        <td >Hours:{{  row[2]  }} Minutes:{{  row[3]  }}</td>
+ 
+    </tr>
+    {% endfor %}
+    </table>
+    <form action="/delete_history" method="POST">
+        <button style="align-items: center" class="btn btn-primary" type="submit">DELETE</button>
+    </form>
+</div>
+
+
+
+
+{% endblock %}
